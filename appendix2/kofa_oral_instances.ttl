@@ -1,0 +1,308 @@
+@prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
+@prefix kofa: <http://kofa.example.org/oral/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://kofa.example.org/oral/> a owl:Ontology ;
+    rdfs:label "영자원 구술 아카이브 RiC-O 인스턴스 (합작영화 군집)" ;
+    rdfs:comment "석사학위논문 4.4 사례 적용 인스턴스 데이터. RiC-O v1.1 (2025) 준거." ;
+    owl:imports <https://www.ica.org/standards/RiC/ontology/1.1> .
+
+# 1. 인물 개체 (R2: 행위자의 개체화)
+kofa:person_KangBeomGu a rico:Person, owl:NamedIndividual ;
+    rdfs:label "강범구(1924~, 감독)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Director .
+
+kofa:person_ParkHaengCheol a rico:Person, owl:NamedIndividual ;
+    rdfs:label "박행철(1934~, 제작자)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Producer .
+
+kofa:person_JeongChangHwa a rico:Person, owl:NamedIndividual ;
+    rdfs:label "정창화(1928~, 감독)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Director .
+
+# 구술 내용에 등장하는 인물도 동일 클래스의 개체로 둔다.
+kofa:person_GoInHa_asSubject a rico:Person, owl:NamedIndividual ;
+    rdfs:label "고인하(강범구 구술에 등장하는 대만 영화제작자)" .
+
+kofa:person_GoInHa_asNarrator a rico:Person, owl:NamedIndividual ;
+    rdfs:label "고인하(1936~, 감독, 2014년 합작영화 주제사 구술자)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Director .
+
+# 채록연구자
+kofa:person_KwonYongSuk a rico:Person, owl:NamedIndividual ; rdfs:label "권용숙" .
+kofa:person_BaeSuKyung a rico:Person, owl:NamedIndividual ; rdfs:label "배수경" .
+kofa:person_KimSeungKyung a rico:Person, owl:NamedIndividual ; rdfs:label "김승경" .
+kofa:person_GongYoungMin a rico:Person, owl:NamedIndividual ; rdfs:label "공영민" .
+kofa:person_ParkSunYoung a rico:Person, owl:NamedIndividual ; rdfs:label "박선영" .
+kofa:person_ParkJinHee a rico:Person, owl:NamedIndividual ; rdfs:label "박진희" .
+
+# 2. 역할·직능·활동·법령 개체
+# 직능은 대분류와 세부 직능을 개체로 두고 hasOrHadPart(상위→하위)로 연결한다. Q3는 데이터에
+# 구축된 감독·제작자·스태프·현상·색보정·수입 통관·극장 영사의 여섯 범주를 조회하며 9행을 반환한다.
+# 애니메이션 등 구축하지 않은 직능의 실행 결과를 주장하지 않는다.
+kofa:role_Narrator a rico:RoleType, owl:NamedIndividual ; rdfs:label "구술자" .
+kofa:role_Researcher a rico:RoleType, owl:NamedIndividual ; rdfs:label "채록연구자" .
+
+kofa:occ_Director a rico:OccupationType, owl:NamedIndividual ; rdfs:label "감독" .
+kofa:occ_Producer a rico:OccupationType, owl:NamedIndividual ; rdfs:label "제작자" .
+
+kofa:occ_Staff a rico:OccupationType, owl:NamedIndividual ;
+    rdfs:label "스태프" ;
+    rico:hasOrHadPart kofa:occ_Processing .
+kofa:occ_Processing a rico:OccupationType, owl:NamedIndividual ; rdfs:label "현상·색보정" .
+
+kofa:occ_Etc a rico:OccupationType, owl:NamedIndividual ;
+    rdfs:label "기타" ;
+    rico:hasOrHadPart kofa:occ_Customs , kofa:occ_Projection .
+kofa:occ_Customs a rico:OccupationType, owl:NamedIndividual ; rdfs:label "수입 통관" .
+kofa:occ_Projection a rico:OccupationType, owl:NamedIndividual ; rdfs:label "극장 영사" .
+
+# (가) 채록 사업 = 기록을 생성한 활동 (형성 경위 축)
+kofa:act_Project_LifeHistory2008 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2008년 한국영화사 구술채록연구(생애사)" .
+kofa:act_Project_LifeHistory2011 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2011년 한국영화사 구술채록연구(생애사)" .
+kofa:act_Project_LifeHistory2014 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2014년 한국영화사 구술채록연구(생애사)" .
+kofa:act_Project_LifeHistory2020 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2020년 한국영화사 구술채록연구(생애사)" .
+kofa:act_Project_CoProd2014 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2014~2015년 원로영화인 구술채록 주제사: 합작영화" .
+kofa:act_Project_ImportedFilm2020 a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "2020년 원로영화인 구술채록 주제사: 1960~1990년대 수입외화의 변화" .
+
+# (나) 증언 대상 활동 = 내용 축
+kofa:act_CoProduction a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "1960~1970년대 한국·대만·홍콩 합작영화 제작 활동" ;
+    rico:isOrWasRegulatedBy kofa:mandate_ImportQuota .
+    # 근거: 강범구 생애사 자료집 272쪽 편집자 각주(1963년 개정 영화법의
+    # 쿼터 배정 조항, 1970년 영화법 시행령 제30조) [부속 기술 층위]
+
+# (다) 법령·제도와 그 하위 배정 사유 (4.3 규칙 3)
+kofa:mandate_ImportQuota a rico:Mandate, owl:NamedIndividual ;
+    rdfs:label "영화법상 외화수입쿼터 제도" ;
+    rico:hasOrHadPart kofa:mandate_Quota_ExportRecord ,
+                     kofa:mandate_Quota_AntiCommunist .
+
+kofa:mandate_Quota_ExportRecord a rico:Mandate, owl:NamedIndividual ;
+    rdfs:label "수출 실적에 따른 외화수입쿼터 배정" .
+kofa:mandate_Quota_AntiCommunist a rico:Mandate, owl:NamedIndividual ;
+    rdfs:label "반공영화 제작 실적에 따른 외화수입쿼터 배정" .
+
+# 3. 기록·기록군·표현형 개체
+# 증언 대상 관계는 회차(RecordPart)에 근거 위치와 함께 부여하되, 활동 개체는 상위 Record에도
+# 부여하여 활동을 진입점으로 삼는 탐색이 회차와 구술 양쪽에 도달하도록 하였다. 상위 부여분의
+# 근거는 하위 부여분의 합집합으로 도출된다.
+kofa:rec_Kang_Life a rico:Record, owl:NamedIndividual ;
+    rdfs:label "강범구 생애사 구술(2011)" ;
+    rico:hasCreator kofa:person_KangBeomGu ;
+    rico:documents kofa:act_Project_LifeHistory2011 ;
+    rico:isOrWasIncludedIn kofa:rs_LifeHistory ;
+    rico:hasOrHadSubject kofa:act_CoProduction ;
+    rico:hasOrHadPart kofa:recpart_Kang_Life_3rd ,
+                      kofa:recpart_Kang_Life_4th ;
+    rico:hasOrHadInstantiation kofa:inst_Kang_Life_pdf .
+
+kofa:recpart_Kang_Life_3rd a rico:RecordPart, owl:NamedIndividual ;
+    rdfs:label "강범구 생애사 제3차 구술채록문" ;
+    rico:hasOrHadSubject kofa:act_CoProduction .
+    # 근거: 제3차 구술채록문, 자료집 196~199쪽 — 황문평의 소개로 대만
+    # 제작자 고인하의 합작 제의가 전달·성사된 경위 [채록문 본문 층위]
+
+kofa:recpart_Kang_Life_4th a rico:RecordPart, owl:NamedIndividual ;
+    rdfs:label "강범구 생애사 제4차 구술채록문" ;
+    rico:hasOrHadSubject kofa:act_CoProduction ,
+                        kofa:mandate_Quota_ExportRecord .
+    # 근거: 제4차 구술채록문, 자료집 258~261쪽(쿼터 확보 요건),
+    # 261~271쪽(제작 동기와 위장합작) [채록문 본문 층위]
+
+kofa:inst_Kang_Life_pdf a rico:Instantiation, owl:NamedIndividual ;
+    rdfs:label "강범구 생애사 구술채록문(PDF, 7개 분책)" .
+
+kofa:rec_Kang_Thematic a rico:Record, owl:NamedIndividual ;
+    rdfs:label "강범구 합작영화 주제사 구술(2014)" ;
+    rico:hasCreator kofa:person_KangBeomGu ;
+    rico:documents kofa:act_Project_CoProd2014 ;
+    rico:isOrWasIncludedIn kofa:rs_CoProdThematic ;
+    rico:hasOrHadMainSubject kofa:act_CoProduction ;
+    rico:hasOrHadInstantiation kofa:inst_Kang_Thematic_pdf ,
+                               kofa:inst_Kang_Thematic_vod .
+
+kofa:inst_Kang_Thematic_pdf a rico:Instantiation, owl:NamedIndividual ;
+    rdfs:label "강범구 주제사 1차 채록문(PDF)" .
+kofa:inst_Kang_Thematic_vod a rico:Instantiation, owl:NamedIndividual ;
+    rdfs:label "강범구 주제사 구술 영상(영상도서관 VOD)" .
+
+kofa:rec_Park_Life a rico:Record, owl:NamedIndividual ;
+    rdfs:label "박행철 생애사 구술(2014)" ;
+    rico:hasCreator kofa:person_ParkHaengCheol ;
+    rico:documents kofa:act_Project_LifeHistory2014 ;
+    rico:isOrWasIncludedIn kofa:rs_LifeHistory ;
+    rico:hasOrHadSubject kofa:act_CoProduction ,
+                         kofa:mandate_Quota_AntiCommunist .
+    # 근거(합작영화 활동): 회차별 상세목록 제3차 12) [공개 메타데이터 층위]
+    # 근거(반공영화 쿼터): 키워드 '반공영화쿼터' [공개 메타데이터 층위]
+    # 보완 과제: 발화 위치의 특정과 배정 사유의 정확한 분류는 채록문 확인을 요한다.
+
+kofa:rec_Park_Thematic a rico:Record, owl:NamedIndividual ;
+    rdfs:label "박행철 합작영화 주제사 구술(2014)" ;
+    rico:hasCreator kofa:person_ParkHaengCheol ;
+    rico:documents kofa:act_Project_CoProd2014 ;
+    rico:isOrWasIncludedIn kofa:rs_CoProdThematic ;
+    rico:hasOrHadMainSubject kofa:act_CoProduction .
+
+kofa:rec_Jeong_Life a rico:Record, owl:NamedIndividual ;
+    rdfs:label "정창화 생애사 구술(2008)" ;
+    rico:hasCreator kofa:person_JeongChangHwa ;
+    rico:documents kofa:act_Project_LifeHistory2008 ;
+    rico:isOrWasIncludedIn kofa:rs_LifeHistory ;
+    rico:hasOrHadSubject kofa:act_CoProduction .
+    # 근거: 회차별 상세목록 제2차 제목 "1960년대 액션영화와 한홍합작영화
+    # 연출, 쇼브라더스에 스카우트" [공개 메타데이터 층위, 세부 항목 미공개]
+    # 이 구술은 합작영화 주제사에 등재되어 있지 않고 합작 관련 키워드도
+    # 부여되어 있지 않으므로, 현행 편성·색인 경로로는 도달되지 않는다.
+
+kofa:rec_ParkNamGi_Life a rico:Record, owl:NamedIndividual ;
+    rdfs:label "박남기 생애사 구술(2020)" ;
+    rico:hasCreator kofa:person_ParkNamGi ;
+    rico:documents kofa:act_Project_LifeHistory2020 ;
+    rico:isOrWasIncludedIn kofa:rs_LifeHistory ;
+    rico:hasOrHadPart kofa:recpart_Park_Life_4th .
+
+kofa:rs_LifeHistory a rico:RecordSet, owl:NamedIndividual ;
+    rdfs:label "생애사 구술 기록군" .
+kofa:rs_CoProdThematic a rico:RecordSet, owl:NamedIndividual ;
+    rdfs:label "합작영화 주제사 구술군(2014~2015, 17건)" ;
+    rico:documents kofa:act_Project_CoProd2014 ;
+    rico:hasOrHadMainSubject kofa:act_CoProduction .
+kofa:rs_ImportedFilmThematic a rico:RecordSet, owl:NamedIndividual ;
+    rdfs:label "1960~1990년대 수입외화의 변화 주제사 구술군(2020, 6건)" ;
+    rico:documents kofa:act_Project_ImportedFilm2020 ;
+    rico:hasOrHadMainSubject kofa:act_FilmImport .
+
+# 4. 생산 관계의 실체화 (R2: 구술자와 채록연구자의 역할 구별)
+# 관계의 방향은 Source=기록, Target=관여 행위자로 둔다. 구축 범위의 한정은 부록 3의 5절에 밝힌
+# 바와 같다.
+kofa:cr_Kang_Life_narrator a rico:CreationRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:rec_Kang_Life ;
+    rico:relationHasTarget kofa:person_KangBeomGu ;
+    rico:creationWithRole kofa:role_Narrator .
+kofa:cr_Kang_Life_researcher a rico:CreationRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:rec_Kang_Life ;
+    rico:relationHasTarget kofa:person_KwonYongSuk ;
+    rico:creationWithRole kofa:role_Researcher .
+
+kofa:cr_Kang_Thematic_narrator a rico:CreationRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:rec_Kang_Thematic ;
+    rico:relationHasTarget kofa:person_KangBeomGu ;
+    rico:creationWithRole kofa:role_Narrator .
+kofa:cr_Kang_Thematic_researcher a rico:CreationRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:rec_Kang_Thematic ;
+    rico:relationHasTarget kofa:person_BaeSuKyung ;
+    rico:creationWithRole kofa:role_Researcher .
+
+# 5. 증언 맥락의 삼각 구조 — 참여 (R3, 변 1)
+kofa:person_KangBeomGu rico:isOrWasParticipantIn kofa:act_CoProduction .
+    # 근거: 강범구 생애사 자료집 인적사항·활동경력
+    # (<탈출명령>(1966), <일대영웅>(1974) 연출) [부속 기술 층위]
+
+kofa:person_JeongChangHwa rico:isOrWasParticipantIn kofa:act_CoProduction .
+    # 근거: 정창화 생애사 자료집 경력사항 분책 [부속 기술 층위]
+
+kofa:person_ParkHaengCheol rico:isOrWasParticipantIn kofa:act_CoProduction .
+    # 근거: 박행철 생애사 자료집 인적 사항 및 활동 경력 [부속 기술 층위]
+
+# 6. 미확정 동일성의 기록 (4.3)
+kofa:rel_GoInHa_identity a rico:Relation, owl:NamedIndividual ;
+    rico:relationConnects kofa:person_GoInHa_asSubject ,
+                           kofa:person_GoInHa_asNarrator ;
+    rico:relationCertainty "uncertain" ;
+    rico:generalDescription "강범구가 <탈출명령> 성사 경위에서 지목한 대만 제작자 고인하와 2014년 합작영화 주제사 구술자 고인하(감독, 1936년생)의 동일성 후보 관계. 근거: 성명 일치 + 동일 작품 <탈출명령> 관여라는 활동 이력의 일치(고인하 주제사 회차별 상세목록). 다만 직능 표시가 제작자와 감독으로 갈리고 채록 기관의 확인이 없어 확정하지 않음." .
+
+# 7. 보조표본: 사건 개체와 활동 층위의 분화
+kofa:person_ParkNamGi a rico:Person, owl:NamedIndividual ;
+    rdfs:label "박남기(1935~, 현상·색보정)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Processing ;
+    rico:isOrWasMemberOf kofa:corp_NationalFilmProduction .
+
+kofa:corp_NationalFilmProduction a rico:CorporateBody, owl:NamedIndividual ;
+    rdfs:label "국립영화제작소" .
+
+kofa:event_Purge1980 a rico:Event, owl:NamedIndividual ;
+    rdfs:label "1980년 국보위의 공직자 숙청" .
+
+kofa:person_ParkNamGi rico:isOrWasParticipantIn kofa:event_Purge1980 .
+    # 근거: 회차별 상세목록 제4차 14) "1980년 국보위의 공직자 숙청에 연루"
+    # [공개 메타데이터 층위]
+    # 행위자가 수행한 것이 아니라 겪은 것이므로 상위 클래스 Event로 둔다.
+
+kofa:recpart_Park_Life_4th a rico:RecordPart, owl:NamedIndividual ;
+    rdfs:label "박남기 생애사 제4차 구술채록문" ;
+    rico:hasOrHadSubject kofa:event_Purge1980 .
+    # 이 사건은 박남기 구술의 키워드 목록에 부여되어 있지 않으므로
+    # 현행 색인 경로로는 도달할 수 없다(4.5 Q6).
+
+# 활동의 층위 분화 (4.3 규칙 3)
+kofa:act_FilmImport a rico:Activity, owl:NamedIndividual ;
+    rdfs:label "외화 수입·배급 활동" ;
+    rico:hasOrHadPart kofa:act_Customs , kofa:act_Projection .
+
+kofa:act_Customs a rico:Activity, owl:NamedIndividual ; rdfs:label "외화 수입 통관" .
+kofa:act_Projection a rico:Activity, owl:NamedIndividual ; rdfs:label "극장 영사" .
+
+kofa:person_JiHeonSul a rico:Person, owl:NamedIndividual ;
+    rdfs:label "지헌술(수입 통관)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Customs ;
+    rico:isOrWasParticipantIn kofa:act_Customs .
+    # 근거: 주제사 구술자 직능 표시 기타(수입 통관) [공개 메타데이터 층위]
+
+kofa:person_ChoiChiHwan a rico:Person, owl:NamedIndividual ;
+    rdfs:label "최치환(극장 영사)" ;
+    rico:hasOrHadOccupationOfType kofa:occ_Projection ;
+    rico:isOrWasParticipantIn kofa:act_Projection .
+    # 근거: 주제사 구술자 직능 표시 기타(극장 영사) [공개 메타데이터 층위]
+
+# 8. 규제 관계의 실체화 — 출처별 성격 진술의 분리 (4.4)
+# RuleRelation의 source는 법령, target은 활동이다. 이는 regulatesOrRegulated(법령→활동)와
+# 대응하며, isOrWasRegulatedBy(활동→법령)와는 역방향이다. 아래 두 관계는 출처별 설명을 구분하여
+# 저장한 사례이며 부정 진술의 OWL 형식화가 아니다. 해석을 확정하지 않았으므로 확실성은 uncertain
+# 으로 기록한다.
+kofa:rel_CoProd_Quota_bySpeaker a rico:RuleRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:mandate_ImportQuota ;
+    rico:relationHasTarget kofa:act_CoProduction ;
+    rico:relationCertainty "uncertain" ;
+    rico:generalDescription "구술자 진술: 합작영화는 쿼터 배정과 직접 관계가 없었으며 동기는 흥행과 제작비 절감에 있었음. [강범구 생애사 제4차 구술채록문, 261쪽·270~271쪽 / 채록문 본문 층위]" .
+
+kofa:rel_CoProd_Quota_byEditor a rico:RuleRelation, owl:NamedIndividual ;
+    rico:relationHasSource kofa:mandate_ImportQuota ;
+    rico:relationHasTarget kofa:act_CoProduction ;
+    rico:relationCertainty "uncertain" ;
+    rico:generalDescription "편집자 주석: 합작은 의무제작편수 충족을 통한 영화사 유지 및 쿼터 획득에 간접 기여하는 측면이 있었고, 쿼터를 소모하지 않는 외화 확보 효과를 가졌음. [동 자료집 267쪽 각주 / 부속 기술 층위]" .
+
+# 9. 보조표본: 수입외화 주제사 구술 기록
+# 공정 단계를 진입점으로 삼는 탐색이 인물뿐 아니라 기록에도 도달하도록, 두 구술자의 기록을
+# 개체로 둔다(4.5 Q5).
+kofa:rec_JiHeonSul_Thematic a rico:Record, owl:NamedIndividual ;
+    rdfs:label "지헌술 수입외화 주제사 구술(2020)" ;
+    rico:hasCreator kofa:person_JiHeonSul ;
+    rico:documents kofa:act_Project_ImportedFilm2020 ;
+    rico:isOrWasIncludedIn kofa:rs_ImportedFilmThematic ;
+    rico:hasOrHadMainSubject kofa:act_FilmImport ;
+    rico:hasOrHadSubject kofa:act_Customs .
+    # 근거: 회차별 상세목록의 통관 관련 항목 및 키워드 '서울통관사'
+    # [공개 메타데이터 층위]
+
+kofa:rec_ChoiChiHwan_Thematic a rico:Record, owl:NamedIndividual ;
+    rdfs:label "최치환 수입외화 주제사 구술(2020)" ;
+    rico:hasCreator kofa:person_ChoiChiHwan ;
+    rico:documents kofa:act_Project_ImportedFilm2020 ;
+    rico:isOrWasIncludedIn kofa:rs_ImportedFilmThematic ;
+    rico:hasOrHadMainSubject kofa:act_FilmImport ;
+    rico:hasOrHadSubject kofa:act_Projection .
+    # 근거: 회차별 상세목록의 영사 관련 항목 [공개 메타데이터 층위]
+
+# 10. 관계별 출처 속성(3건)
+kofa:rel_GoInHa_identity rico:relationSource "근거: 고인하 주제사 회차별 상세목록의 성명·작품 관여 정보 / 공개 메타데이터 층위 / 동일성 미확정." .
+kofa:rel_CoProd_Quota_bySpeaker rico:relationSource "근거: 강범구 생애사 제4차 구술채록문 261쪽·270–271쪽 / 채록문 본문 층위." .
+kofa:rel_CoProd_Quota_byEditor rico:relationSource "근거: 강범구 생애사 자료집 267쪽 각주 / 부속 기술 층위." .

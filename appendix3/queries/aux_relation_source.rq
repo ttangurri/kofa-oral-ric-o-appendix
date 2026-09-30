@@ -1,0 +1,6 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# 보조 질의. 관계별 출처 조회 / Auxiliary query: provenance of each relation
+SELECT ?관계 ?출처 WHERE { ?관계 rico:relationSource ?출처 } ORDER BY ?관계

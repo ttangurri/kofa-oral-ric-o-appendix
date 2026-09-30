@@ -1,0 +1,13 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q2. 동일 인물에 연결된 생애사·주제사 구술 / Life-history and thematic records of one person
+SELECT ?기록 ?편성
+WHERE {
+   ?rec rico:hasCreator kofa:person_KangBeomGu ;
+        rdfs:label ?기록 ;
+        rico:isOrWasIncludedIn ?rs .
+   ?rs rdfs:label ?편성 .
+}
+ORDER BY ?기록

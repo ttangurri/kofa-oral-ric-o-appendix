@@ -1,0 +1,14 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q1. 합작영화 참여자와 생애사 구술의 관계 / Co-production participants and their life-history oral records
+SELECT ?구술자명 ?생애사구술
+WHERE {
+   ?person rico:isOrWasParticipantIn kofa:act_CoProduction ;
+           rdfs:label ?구술자명 .
+   ?rec rico:hasCreator ?person ;
+        rico:isOrWasIncludedIn kofa:rs_LifeHistory ;
+        rdfs:label ?생애사구술 .
+}
+ORDER BY ?구술자명

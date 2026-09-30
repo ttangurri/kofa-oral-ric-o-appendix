@@ -1,0 +1,19 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q7. 공유 활동을 통한 기록 간 확장 / Expanding across records through a shared activity
+SELECT DISTINCT ?도달기록 ?관계유형
+WHERE {
+   { kofa:rec_Jeong_Life rico:hasOrHadSubject ?act .
+     ?other rico:hasOrHadMainSubject ?act ;
+            rdfs:label ?도달기록 .
+     BIND("주 주제" AS ?관계유형) }
+   UNION
+   { kofa:rec_Jeong_Life rico:hasOrHadSubject ?act .
+     ?other rico:hasOrHadSubject ?act ;
+            rdfs:label ?도달기록 .
+     BIND("일반 주제(주 주제 여부 미지정)" AS ?관계유형)
+     FILTER(?other != kofa:rec_Jeong_Life) }
+}
+ORDER BY ?관계유형 ?도달기록

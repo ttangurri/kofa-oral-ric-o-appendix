@@ -1,0 +1,16 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q4. 상위 제도와 배정 사유를 통한 증언 연결 / Linking testimonies through an overarching mandate and its allocation reasons
+SELECT ?기록단위 ?증언대상
+WHERE {
+   { ?unit rico:hasOrHadSubject kofa:mandate_ImportQuota .
+     BIND(kofa:mandate_ImportQuota AS ?m) }
+   UNION
+   { kofa:mandate_ImportQuota rico:hasOrHadPart ?m .
+     ?unit rico:hasOrHadSubject ?m }
+   ?unit rdfs:label ?기록단위 .
+   ?m rdfs:label ?증언대상 .
+}
+ORDER BY ?기록단위

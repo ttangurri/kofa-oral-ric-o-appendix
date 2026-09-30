@@ -1,0 +1,14 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q3. 직능 계층을 통한 구술기록 탐색 / Exploring records through the occupation hierarchy
+SELECT DISTINCT ?직능 ?구술자명 ?기록
+WHERE {
+   VALUES ?occ { kofa:occ_Director kofa:occ_Producer kofa:occ_Staff
+                 kofa:occ_Processing kofa:occ_Customs kofa:occ_Projection }
+   ?occ rico:hasOrHadPart* ?assigned ; rdfs:label ?직능 .
+   ?person rico:hasOrHadOccupationOfType ?assigned ; rdfs:label ?구술자명 .
+   ?rec rico:hasCreator ?person ; rdfs:label ?기록 .
+}
+ORDER BY ?직능 ?구술자명 ?기록

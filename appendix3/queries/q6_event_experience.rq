@@ -1,0 +1,13 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q6. 사건 경험과 증언 회차의 연결 / Linking an experienced event to a testimony session
+SELECT DISTINCT ?사건 ?경험자 ?증언회차 ?상위구술
+WHERE {
+   ?p rico:isOrWasParticipantIn kofa:event_Purge1980 ; rdfs:label ?경험자 .
+   kofa:event_Purge1980 rdfs:label ?사건 .
+   ?part rico:hasOrHadSubject kofa:event_Purge1980 ; rdfs:label ?증언회차 .
+   ?rec rico:hasOrHadPart ?part ; rico:hasCreator ?p ; rdfs:label ?상위구술 .
+}
+ORDER BY ?경험자 ?상위구술 ?증언회차

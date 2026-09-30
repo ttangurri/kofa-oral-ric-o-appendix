@@ -1,0 +1,15 @@
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX kofa: <http://kofa.example.org/oral/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Q5. 통관 단계의 참여자와 증언기록 / Participants and testimony records at the customs stage
+SELECT DISTINCT ?단계 ?참여자 ?증언기록
+WHERE {
+   VALUES ?stage { kofa:act_Customs }
+   kofa:act_FilmImport rico:hasOrHadPart ?stage .
+   ?stage rdfs:label ?단계 .
+   ?p rico:isOrWasParticipantIn ?stage ; rdfs:label ?참여자 .
+   ?rec rico:hasOrHadSubject ?stage ; rico:hasCreator ?p ;
+        rdfs:label ?증언기록 .
+}
+ORDER BY ?단계 ?참여자 ?증언기록
