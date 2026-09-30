@@ -40,3 +40,7 @@ print(len(g))  # 280
 ```
 
 Any Turtle-capable tool (Protégé, Apache Jena, etc.) can open it. For example queries, see [`../appendix3/`](../appendix3/README.md).
+
+## Rights
+
+Only the author's original contributions (data modeling, RDF structure, queries, documentation) are licensed under [CC BY 4.0](../LICENSE). Rights in KOFA or third-party source materials remain with their holders; the original oral history transcripts and audiovisual materials are not redistributed here. See the [root README](../README.md#license-and-rights-notice).

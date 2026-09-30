@@ -119,3 +119,7 @@ Query text and result values are in Korean, as in the thesis.
 | http://kofa.example.org/oral/rel_CoProd_Quota_byEditor | 근거: 강범구 생애사 자료집 267쪽 각주 / 부속 기술 층위. |
 | http://kofa.example.org/oral/rel_CoProd_Quota_bySpeaker | 근거: 강범구 생애사 제4차 구술채록문 261쪽·270–271쪽 / 채록문 본문 층위. |
 | http://kofa.example.org/oral/rel_GoInHa_identity | 근거: 고인하 주제사 회차별 상세목록의 성명·작품 관여 정보 / 공개 메타데이터 층위 / 동일성 미확정. |
+
+## Rights
+
+Only the author's original contributions (data modeling, RDF structure, queries, documentation) are licensed under [CC BY 4.0](../LICENSE). Rights in KOFA or third-party source materials remain with their holders; the original oral history transcripts and audiovisual materials are not redistributed here. See the [root README](../README.md#license-and-rights-notice).

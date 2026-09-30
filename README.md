@@ -23,6 +23,12 @@ The script loads 280 triples and prints the row count of each query (Q1 3 · Q2 
 - The data is grounded in public metadata and oral history transcripts/volumes. The evidence level of each relation is marked in the Turtle comments and in `rico:relationSource`.
 - Labels and literals are in Korean. The thesis is the authoritative version; where this repository differs, the thesis prevails.
 
-## License
+## License and Rights Notice
 
-[CC BY 4.0](LICENSE) — free to use, adapt and redistribute with attribution (Oh Yuri, appendices of a master's thesis, Chungnam National University).
+This repository contains research data and code created by the author based on publicly available materials from the Korean Film Archive (KOFA).
+
+The [CC BY 4.0](LICENSE) license applies only to the original data modeling, RDF structure, SPARQL queries, documentation, and other original contributions created by the author. Please attribute as: Oh Yuri, appendices of a master's thesis, Chungnam National University.
+
+Copyright and related rights in source materials, oral history transcripts, images, and other materials originating from KOFA or third parties remain with their respective rights holders.
+
+This repository does not redistribute the original oral history transcripts or audiovisual materials.
