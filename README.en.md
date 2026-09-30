@@ -24,3 +24,7 @@ The script loads 280 triples and prints the row count of each query (Q1 3 · Q2 
 - The namespace `http://kofa.example.org/oral/` is a **placeholder**; it is not an identifier issued by the Korean Film Archive.
 - The data is grounded in public metadata and oral history transcripts/volumes. The evidence level of each relation is marked in the Turtle comments and in `rico:relationSource`.
 - Labels and literals are in Korean. The thesis is the authoritative version; where this repository differs, the thesis prevails.
+
+## License
+
+[CC BY 4.0](LICENSE) — free to use, adapt and redistribute with attribution (Oh Yuri, appendices of a master's thesis, Chungnam National University).

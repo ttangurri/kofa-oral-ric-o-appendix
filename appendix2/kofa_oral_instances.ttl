@@ -182,8 +182,7 @@ kofa:rs_ImportedFilmThematic a rico:RecordSet, owl:NamedIndividual ;
     rico:hasOrHadMainSubject kofa:act_FilmImport .
 
 # 4. 생산 관계의 실체화 (R2: 구술자와 채록연구자의 역할 구별)
-# 관계의 방향은 Source=기록, Target=관여 행위자로 둔다. 구축 범위의 한정은 부록 3의 5절에 밝힌
-# 바와 같다.
+# 관계의 방향은 Source=기록, Target=관여 행위자로 둔다.
 kofa:cr_Kang_Life_narrator a rico:CreationRelation, owl:NamedIndividual ;
     rico:relationHasSource kofa:rec_Kang_Life ;
     rico:relationHasTarget kofa:person_KangBeomGu ;
