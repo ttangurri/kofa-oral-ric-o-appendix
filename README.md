@@ -1,6 +1,6 @@
-# RiC-O Case Data for the Korean Film Archive's Oral History Collection (Thesis Appendices 2 & 3)
+# RiC-O(Records in Contexts-Ontology) Case Data for the Korean Film Archive's Oral History Collection (Thesis Appendices 2 & 3)
 
-This repository holds, in reusable form, **Appendix 2 (RiC-O instance data)** and **Appendix 3 (conformance queries and execution results)** of the master's thesis *Designing Descriptive Elements for Relationship-Based Exploration of the Korean Film Archive's Oral History Collection: An Application of RiC-O* (Oh Yuri, Department of Archives Management, Graduate School, Chungnam National University).
+This repository holds, in reusable form, **Appendix 2 (RiC-O instance data)** and **Appendix 3 (conformance queries and execution results)** of the master's thesis *Designing Descriptive Elements for Relationship-Based Exploration of the Korean Film Archive's Oral History Collection: An Application of RiC-O* (Oh Yuri, Department of Archival Science, Graduate School, Chungnam National University).
 
 | Folder | Contents | Guide |
 |---|---|---|
